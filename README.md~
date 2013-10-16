@@ -1,0 +1,24 @@
+#Device tree simple web editor
+
+##Installing
+
+Clone this project on your PC:
+
+<pre>
+~$ git clone git://github.com/tanzilli/dtEditor.git
+</pre>
+
+##Live demo
+
+* http://dteditor.tanzilli.com
+
+##Try it on your Linux PC
+
+Move in the dtEditor directory and run a simple web server:
+
+<pre>
+~$ cd dtEditor
+~/dtEditor$ python -m SimpleHTTPServer
+</pre>
+
+Then open your browser to **http://localhost:8000** 

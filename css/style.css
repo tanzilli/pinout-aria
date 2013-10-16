@@ -1,0 +1,180 @@
+body  {
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+div.hwsections {
+	width:300px;
+}
+
+span#debug {
+	position: absolute;
+	z-index: 0;
+	top: 100px;
+	left: 0px;
+}
+
+span#coordinates {
+	position: absolute;
+	z-index: 0;
+	top: 115px;
+	left: 0px;
+}
+
+img#icon_top {
+	position: absolute;
+	z-index: 0;
+	top: 10px;
+	left: 0px;
+}
+
+img#icon_bottom {
+	position: absolute;
+	z-index: 0;
+	top: 10px;
+	left: 66px;
+}
+
+img#icon_left {
+	position: absolute;
+	z-index: 0;
+	top: 10px;
+	left: 540px;
+}
+
+img#icon_right {
+	position: absolute;
+	z-index: 0;
+	top: 10px;
+	left: 606px;
+}
+div#div_pinout {
+	position: absolute;
+	z-index: 1;
+	top: 30px;
+	left: 320px;
+	width: 640px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+div#div_ariag25_image {
+	position: absolute;
+	z-index: 0;
+	top: 84px;
+	left: 84px;
+}
+
+div#div_left_pins {
+	position: absolute;
+	z-index: 1;
+	top: 144px;
+	left: 0px;
+	width: 94px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+	/*border: 1px solid red;*/
+}
+
+div#div_top_pins {
+	position: absolute;
+	z-index: 1;
+	top: -144px;
+	left: 288px;
+	width: 94px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+div#div_right_pins {
+	position: absolute;
+	z-index: 1;
+	top: 144px;
+	left: 577px;
+	width: 94px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+div#div_bottom_pins {
+	position: absolute;
+	z-index: 1;
+	top: 432px;
+	left: 288px;
+	width: 94px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+div#div_dts {
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	left: 1000px;
+	width: 400px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+textarea#textarea_dts {
+	z-index: 1;
+	top: 0px;
+	left: 0px;
+	width: 400px;
+	height: 600px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+
+button {
+	border-style: none;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+}
+
+button.pins {
+	border-style: none;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+	background-color: blue;
+	color: white;
+	/*font-weight:bold;*/
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:1px;
+	padding-right:1px;
+	margin:1px;
+	width:30px;
+	height:14px;
+}
+
+button.atmelnames {
+	border-style: none;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+	background-color: green;
+	color: white;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:1px;
+	padding-right:1px;
+	margin:1px;
+	width:60px;
+	height:14px;
+}
+
+button.signals {
+	border-style: none;
+	font-family: Arial, sans-serif;
+	font-size: 8pt;
+	background-color: orange;
+	color: white;
+	/*font-weight:bold;*/
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:1px;
+	padding-right:1px;
+	margin:1px;
+	width:60px;
+}
