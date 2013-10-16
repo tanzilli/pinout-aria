@@ -1,6 +1,7 @@
 body  {
 	font-family: Arial, sans-serif;
 	font-size: 9pt;
+	background: url(paper.jpg) repeat-x #6F715C;
 }
 
 div.hwsections {
