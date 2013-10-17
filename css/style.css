@@ -133,6 +133,7 @@ button {
 	border-style: none;
 	font-family: Arial, sans-serif;
 	font-size: 8pt;
+	border: 2px solid red;
 }
 
 button.pins {
