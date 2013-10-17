@@ -105,6 +105,7 @@ div#div_bottom_pins {
 	width: 94px;
 	font-family: Arial, sans-serif;
 	font-size: 9pt;
+	text-align: right;
 }
 
 div#div_dts {
@@ -123,8 +124,8 @@ textarea#textarea_dts {
 	left: 0px;
 	width: 400px;
 	height: 600px;
-	font-family: Arial, sans-serif;
-	font-size: 9pt;
+	font-family: monospace;
+	font-size: 8pt;
 }
 
 

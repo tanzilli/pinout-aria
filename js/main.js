@@ -150,7 +150,7 @@ function ShowPins(side,div,direction) {
 				contents+=side + (i+1);
 				contents+="</button>";
 			}	
-			contents+="<button class='atmelnames'>";
+			contents+="<button class='atmelnames' id='" + atmel_array[i] + "'>";
 			contents+=atmel_array[i];
 			contents+="</button>";
 			if (div=="div_bottom_pins" || div=="div_left_pins") {
@@ -167,7 +167,7 @@ function ShowPins(side,div,direction) {
 				contents+=side + (i+1);
 				contents+="</button>";
 			}	
-			contents+="<button class='atmelnames'>";
+			contents+="<button class='atmelnames' id='" + atmel_array[i] + "'>";
 			contents+=atmel_array[i];
 			contents+="</button>";
 			if (div=="div_bottom_pins" || div=="div_left_pins") {
@@ -180,36 +180,51 @@ function ShowPins(side,div,direction) {
 	}	
 	$("#" + div).html(contents);
 	
+	// Set the pin colors
+	colorPins();
+}	
+
+function colorPins() {
 	$(".atmelnames").each(function (){
-		if ($(this).text()=="GND") {
+		if ($(this).attr("id")=="GND") {
 			$(this).css("background-color","black");
 		}
-		if ($(this).text()=="3V3") {
+		if ($(this).attr("id")=="3V3") {
 			$(this).css("background-color","red");
 		}
-		if ($(this).text()=="ADVREF") {
+		if ($(this).attr("id")=="ADVREF") {
 			$(this).css("background-color","red");
 		}
-		if ($(this).text()=="VBAT") {
+		if ($(this).attr("id")=="VBAT") {
 			$(this).css("background-color","red");
 		}
-		if ($(this).text().search("ETH")!=-1) {
+		if ($(this).attr("id").search("ETH")!=-1) {
 			$(this).css("background-color","orange");
 		}
-		if ($(this).text().search("USB")!=-1) {
+		if ($(this).attr("id").search("USB")!=-1) {
 			$(this).css("background-color","#81BEF7");
 		}
-		if ($(this).text().search("MMC")!=-1) {
+		if ($(this).attr("id").search("MMC")!=-1) {
 			$(this).css("background-color","#DA81F5");
+		}
+		if ($(this).attr("id").search("PA")!=-1 || $(this).attr("id").search("PB")!=-1 || $(this).attr("id").search("PC")!=-1) {
+			$(this).css("background-color","green");
 		}
 		if ($(this).text().search("RXD")!=-1 || $(this).text().search("TXD")!=-1) {
 			$(this).css("background-color","#2E2EFE");
 		}
+		if ($(this).text().search("CTS")!=-1 || $(this).text().search("RTS")!=-1) {
+			$(this).css("background-color","#2E2EFE");
+		}
+		if ($(this).text().search("AD")!=-1) {
+			$(this).css("background-color","#FE2EC8");
+		}
+		if ($(this).text().search("SDA")!=-1 || $(this).text().search("SCL")!=-1) {
+			$(this).css("background-color","#2ECCFA");
+		}
 	});
-	
-	
-	
-}	
+}
+
 
 function ShowAllPins(degree) {
 	if (degree==0) {
@@ -247,11 +262,18 @@ function ShowAllPins(degree) {
 	});
 }
 
+function showSignal(pinName,signal) {
+	if ($("#" + pinName).text()!=signal) {
+		$("#" + pinName).fadeOut(function() {
+			$(this).text(signal).fadeIn(colorPins());
+		});
+	}	
+}
+
 function readDTS() {
 	$.ajax({
 		url: $("#dt_filename").val() + ".dts",
 	}).done(function(data) {
-	
 		tab = RegExp("\\t", "g");
 		data=data.replace(tab,"  ");
 
@@ -263,22 +285,22 @@ function readDTS() {
 
 		if ($("#usart0enabled").is(':checked')) {
 			data=data.replace("[usart0status]","okay");
-			aria_south[23-1]="TXD0";
-			aria_south[22-1]="RXD0";
+			showSignal("PA0","TXD0");
+			showSignal("PA1","RXD0");
 		} else {
 			data=data.replace("[usart0status]","disabled");
-			aria_south[23-1]="PA0";
-			aria_south[22-1]="PA1";
+			showSignal("PA0","PA0");
+			showSignal("PA1","PA1");
 		}	
 
 		if ($("#usart0pinctrl").is(':checked')) {
 			data=data.replace("[usart0pinctrl]","pinctrl-0 = <&pinctrl_usart0 &pinctrl_usart0_rts &pinctrl_usart0_cts>;");
-			aria_south[21-1]="RTS0";
-			aria_south[20-1]="CTS0";
+			showSignal("PA2","RTS0");
+			showSignal("PA3","CTS0");
 		} else {
 			data=data.replace("[usart0pinctrl]","");
-			aria_south[21-1]="PA2";
-			aria_south[20-1]="PA3";
+			showSignal("PA2","PA2");
+			showSignal("PA3","PA3");
 		}	
 
 		if ($("#usart0rs485atboottime").is(':checked')) {
@@ -299,22 +321,22 @@ function readDTS() {
 
 		if ($("#usart1enabled").is(':checked')) {
 			data=data.replace("[usart1status]","okay");
-			aria_south[18-1]="TXD1";
-			aria_south[17-1]="RXD1";
+			showSignal("PA5","TXD1");
+			showSignal("PA6","RXD1");
 		} else {
 			data=data.replace("[usart1status]","disabled");
-			aria_south[18-1]="PA5";
-			aria_south[17-1]="PA6";
+			showSignal("PA5","PA5");
+			showSignal("PA6","PA6");
 		}	
 
 		if ($("#usart1pinctrl").is(':checked')) {
 			data=data.replace("[usart1pinctrl]","pinctrl-0 = <&pinctrl_usart1 &pinctrl_usart1_rts &pinctrl_usart1_cts>;");
-			aria_east[7-1]="RTS1";
-			aria_east[8-1]="CTS1";
+			showSignal("PC27","RTS1");
+			showSignal("PC28","CTS1");
 		} else {
 			data=data.replace("[usart1pinctrl]","");
-			aria_east[7-1]="PC27";
-			aria_east[8-1]="PC28";
+			showSignal("PC27","PC27");
+			showSignal("PC28","PC28");
 		}	
 
 		if ($("#usart1rs485atboottime").is(':checked')) {
@@ -335,12 +357,12 @@ function readDTS() {
 
 		if ($("#usart2enabled").is(':checked')) {
 			data=data.replace("[usart2status]","okay");
-			aria_south[16-1]="TXD2";
-			aria_south[15-1]="RXD2";
+			showSignal("PA7","TXD2");
+			showSignal("PA8","RXD2");
 		} else {
 			data=data.replace("[usart2status]","disabled");
-			aria_south[16-1]="PA7";
-			aria_south[15-1]="PA8";
+			showSignal("PA7","PA7");
+			showSignal("PA8","PA8");
 		}	
 	
 		//**********************
@@ -349,22 +371,22 @@ function readDTS() {
 
 		if ($("#usart3enabled").is(':checked')) {
 			data=data.replace("[usart3status]","okay");
-			aria_east[2-1]="TXD3";
-			aria_east[3-1]="RXD3";
+			showSignal("PC22","TXD3");
+			showSignal("PC23","RXD3");
 		} else {
 			data=data.replace("[usart3status]","disabled");
-			aria_east[2-1]="PC22";
-			aria_east[3-1]="PC23";
+			showSignal("PC22","PC22");
+			showSignal("PC23","PC23");
 		}	
 	
 		if ($("#usart3pinctrl").is(':checked')) {
 			data=data.replace("[usart3pinctrl]","pinctrl-0 = <&pinctrl_usart3 &pinctrl_usart3_rts &pinctrl_usart3_cts>;");
-			aria_east[4-1]="RTS3";
-			aria_east[5-1]="CTS3";
+			showSignal("PC24","RTS3");
+			showSignal("PC25","CTS3");
 		} else {
 			data=data.replace("[usart3pinctrl]","");
-			aria_east[4-1]="PC24";
-			aria_east[5-1]="PC25";
+			showSignal("PC24","PC24");
+			showSignal("PC25","PC25");
 		}	
 
 		if ($("#usart3rs485atboottime").is(':checked')) {
@@ -385,12 +407,12 @@ function readDTS() {
 
 		if ($("#uart0enabled").is(':checked')) {
 			data=data.replace("[uart0status]","okay");
-			aria_north[10-1]="UTXD0";
-			aria_north[11-1]="URXD0";
+			showSignal("PC8","UTXD0");
+			showSignal("PC9","URXD0");
 		} else {
 			data=data.replace("[uart0status]","disabled");
-			aria_north[10-1]="PC8";
-			aria_north[11-1]="PC9";
+			showSignal("PC8","PC8");
+			showSignal("PC9","PC9");
 		}	
 	
 		//**********************
@@ -399,12 +421,12 @@ function readDTS() {
 
 		if ($("#uart1enabled").is(':checked')) {
 			data=data.replace("[uart1status]","okay");
-			aria_north[18-1]="UTXD1";
-			aria_north[19-1]="URXD1";
+			showSignal("PC16","UTXD1");
+			showSignal("PC17","URXD1");
 		} else {
 			data=data.replace("[uart1status]","disabled");
-			aria_north[18-1]="PC16";
-			aria_north[19-1]="PC17";
+			showSignal("PC16","PC16");
+			showSignal("PC17","PC17");
 		}	
 	
 		//**********************
@@ -413,12 +435,12 @@ function readDTS() {
 
 		if ($("#i2c0enabled").is(':checked')) {
 			data=data.replace("[i2c0status]","okay");
-			aria_west[17-1]="SDA0";
-			aria_west[18-1]="SCL0";
+			showSignal("PA30","SDA0");
+			showSignal("PA31","SCL0");
 		} else {
 			data=data.replace("[i2c0status]","disabled");
-			aria_west[17-1]="PA30";
-			aria_west[18-1]="PA31";
+			showSignal("PA30","PA30");
+			showSignal("PA31","PA31");
 		}	
 
 		//**********************
@@ -427,31 +449,28 @@ function readDTS() {
 
 		if ($("#i2c1enabled").is(':checked')) {
 			data=data.replace("[i2c1status]","okay");
-			aria_north[2-1]="SDA1";
-			aria_north[3-1]="SCL1";
+			showSignal("PC0","SDA1");
+			showSignal("PC1","SCL1");
 		} else {
 			data=data.replace("[i2c1status]","disabled");
-			aria_north[2-1]="PC0";
-			aria_north[3-1]="PC1";
+			showSignal("PC0","PC0");
+			showSignal("PC1","PC1");
 		}	
-
-		//**********************
-		// ADC
-		//**********************
 
 		if ($("#adcenabled").is(':checked')) {
+			showSignal("PB11","AD0");
+			showSignal("PB12","AD1");
+			showSignal("PB13","AD2");
+			showSignal("PB14","AD3");
 			data=data.replace("[adcstatus]","okay");
-			aria_west[20-1]="AD0";
-			aria_west[21-1]="AD1";
-			aria_west[22-1]="AD2";
-			aria_west[23-1]="AD3";
 		} else {
+			showSignal("PB11","PB11");
+			showSignal("PB12","PB12");
+			showSignal("PB13","PB13");
+			showSignal("PB14","PB14");
 			data=data.replace("[adcstatus]","disabled");
-			aria_west[20-1]="PB11";
-			aria_west[21-1]="PB12";
-			aria_west[22-1]="PB13";
-			aria_west[23-1]="PB14";
 		}	
+
 	
 		//**********************
 		// MACB0 (Ethernet)
@@ -465,8 +484,7 @@ function readDTS() {
 
 		data=data.replace("[macb0macaddress]",$("#macb0macaddress").val());	
 	
-		$("#dts").val(data);
-		showsAriaPins();
+		$("#textarea_dts").val(data);
 	});
 } 
 
