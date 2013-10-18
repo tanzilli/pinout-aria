@@ -15,7 +15,7 @@
 <button onClick="showHwI2c()">I2C</button>
 <button onClick="showHwAdc()">ADC</button>
 <button onClick="showHwRam()">RAM</button>
-<button onClick="showHwMac()">MAC</button>
+<button onClick="showHwOther()">OTHER</button>
 <!--<button onClick="showSignal('PA0','TXD0')">DUMMY</button>-->
 
 <div class="hwsections" id="hwserial">
@@ -93,11 +93,16 @@
 </div>
 
 
-<div class="hwsections" id="hwmac" hidden>
+<div class="hwsections" id="hwother" hidden>
 	<fieldset>
 	<legend>Macb0</legend>
 		<input type="checkbox" id="macb0enabled" checked/>Enabled<br>
-		MAC address: <input type="text" id="macb0macaddress" value="00 04 25 21 43 65"/><br>
+		MAC address: <input type="text" size="20"  id="macb0macaddress" value="00 04 25 21 43 65"/><br>
+	</fieldset>
+	<fieldset>
+
+	<legend>Kernel command line</legend>
+		<input type="text" id="kernelargs" size="30" value="mem=256M console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootdelay=1"/><br>
 	</fieldset>
 </div>
 

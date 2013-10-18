@@ -128,9 +128,9 @@ function showHwRam() {
 	$("div#hwram").slideDown();
 }
 
-function showHwMac() {
+function showHwOther() {
 	$("div.hwsections").slideUp();
-	$("div#hwmac").slideDown();
+	$("div#hwother").slideDown();
 }
 
 function ShowPins(side,div,direction) {
@@ -489,6 +489,7 @@ function readDTS() {
 	
 		//**********************
 		// MACB0 (Ethernet)
+		// Kernel command line
 		//**********************
 
 		if ($("#macb0enabled").is(':checked')) {
@@ -498,6 +499,8 @@ function readDTS() {
 		}	
 
 		data=data.replace("[macb0macaddress]",$("#macb0macaddress").val());	
+
+		data=data.replace("[kernelargs]",$("#kernelargs").val());	
 	
 		$("#textarea_dts").val(data);
 	});
