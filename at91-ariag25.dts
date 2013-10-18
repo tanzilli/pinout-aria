@@ -27,7 +27,7 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
+		bootargs = "mem=256M console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootdelay=1";
 	};
 
 	memory {
