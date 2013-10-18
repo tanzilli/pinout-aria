@@ -123,6 +123,11 @@ function showHwAdc() {
 	$("div#hwadc").slideDown();
 }
 
+function showHwRam() {
+	$("div.hwsections").slideUp();
+	$("div#hwram").slideDown();
+}
+
 function showHwMac() {
 	$("div.hwsections").slideUp();
 	$("div#hwmac").slideDown();
@@ -471,6 +476,16 @@ function readDTS() {
 			data=data.replace("[adcstatus]","disabled");
 		}	
 
+
+		//**********************
+		// RAM size
+		//**********************
+
+		if ($("#ram128").is(':checked')) {
+			data=data.replace("[ramsize]","0x8000000");
+		} else {
+			data=data.replace("[ramsize]","0x10000000");
+		}	
 	
 		//**********************
 		// MACB0 (Ethernet)

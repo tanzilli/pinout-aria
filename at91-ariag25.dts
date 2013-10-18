@@ -31,8 +31,7 @@
 	};
 
 	memory {
-		/* 128 MB, change this for 256 MB revision */
-		reg = <0x20000000 0x8000000>;
+		reg = <0x20000000 [ramsize]>;
 	};
 
 	clocks {
