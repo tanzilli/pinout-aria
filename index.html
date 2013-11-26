@@ -7,105 +7,6 @@
 </head>
 <body>
 
-<a href="https://github.com/tanzilli/pinout" target="_blank">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
-</a>
-
-<button onClick="showHwSerial()">SERIAL</button>
-<button onClick="showHwI2c()">I2C</button>
-<button onClick="showHwAdc()">ADC</button>
-<button onClick="showHwRam()">RAM</button>
-<button onClick="showHwOther()">OTHER</button>
-<!--<button onClick="showSignal('PA0','TXD0')">DUMMY</button>-->
-
-<div class="hwsections" id="hwserial">
-	<fieldset>
-	<legend>/dev/ttyS1 (USART0)</legend>
-		<input type="checkbox" id="usart0enabled" checked/>Enabled<br>
-		<input type="checkbox" id="usart0pinctrl" checked/>CTS and RTS enabled<br>
-		<input type="checkbox" id="usart0rs485atboottime" />RS485 enabled at bootime<br>
-		<input type="checkbox" id="usart0rs485rtsdelay" />RS485 delay<br>
-		<input type="number" id="usart0rs485beforedelay" min="0" max="2000" value="0"> Before (0.1ms)<br>
-		<input type="number" id="usart0rs485afterdelay" min="0" max="2000" value="0"> After (0.1ms)
-	</fieldset>
-
-	<fieldset>
-	<legend>/dev/ttyS2 (USART1)</legend>
-		<input type="checkbox" id="usart1enabled" checked/>Enabled<br>
-		<input type="checkbox" id="usart1pinctrl" checked/>CTS and RTS enabled<br>
-		<input type="checkbox" id="usart1rs485atboottime" />RS485 enabled at bootime<br>
-		<input type="checkbox" id="usart1rs485rtsdelay" />RS485 delay<br> 
-		<input type="number" id="usart1rs485beforedelay" min="0" max="2000" value="0"> Before (0.1ms)<br>
-		<input type="number" id="usart1rs485afterdelay" min="0" max="2000" value="0"> After (0.1ms)
-	</fieldset>
-
-	<fieldset>
-		<legend>/dev/ttyS3 (USART2)</legend>
-		<input type="checkbox" id="usart2enabled" checked/>Enabled<br>
-	</fieldset>
-
-	<fieldset>
-		<legend>/dev/ttyS4 (USART3)</legend>
-		<input type="checkbox" id="usart3enabled" checked/>Enabled<br>
-		<input type="checkbox" id="usart3pinctrl" checked/>CTS and RTS enabled<br>
-		<input type="checkbox" id="usart3rs485atboottime" />RS485 enabled at bootime<br>
-		<input type="checkbox" id="usart3rs485rtsdelay" />RS485 delay<br> 
-		<input type="number" id="usart3rs485beforedelay" min="0" max="2000" value="0"> Before (0.1ms)<br>
-		<input type="number" id="usart3rs485afterdelay" min="0" max="2000" value="0"> After (0.1ms)
-	</fieldset>
-
-	<fieldset>
-		<legend>/dev/ttyS5 (UART0)</legend>
-		<input type="checkbox" id="uart0enabled"/>Enabled<br>
-	</fieldset>
-
-	<fieldset>
-		<legend>/dev/ttyS6 (UART1)</legend>
-		<input type="checkbox" id="uart1enabled"/>Enabled<br>
-	</fieldset>
-</div>
-
-<div class="hwsections" id="hwi2c" hidden>
-	<fieldset>
-	<legend>/dev/i2c-0</legend>
-		<input type="checkbox" id="i2c0enabled" checked/>Enabled<br>
-	</fieldset>
-
-	<fieldset>
-	<legend>/dev/i2c-1</legend>
-		<input type="checkbox" id="i2c1enabled"/>Enabled<br>
-	</fieldset>
-</div>
-
-<div class="hwsections" id="hwadc" hidden>
-	<fieldset>
-	<legend>A/D converter @ 10 bits</legend>
-		<input type="checkbox" id="adcenabled" checked/>Enabled<br>
-	</fieldset>
-</div>
-
-<div class="hwsections" id="hwram" hidden>
-	<fieldset>
-	<legend>RAM size</legend>
-		<input type="radio" name="ram" id="ram128" checked/>128 MByte<br>
-		<input type="radio" name="ram" id="ram256"/>256 MByte<br>
-	</fieldset>
-</div>
-
-
-<div class="hwsections" id="hwother" hidden>
-	<fieldset>
-	<legend>Macb0</legend>
-		<input type="checkbox" id="macb0enabled" checked/>Enabled<br>
-		MAC address: <input type="text" size="20"  id="macb0macaddress" value="00 04 25 21 43 65"/><br>
-	</fieldset>
-	<fieldset>
-
-	<legend>Kernel command line</legend>
-		<input type="text" id="kernelargs" size="30" value="mem=256M console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootdelay=1"/><br>
-	</fieldset>
-</div>
-
 <div id="div_pinout">
 	<img src="images/icon_top.png" id="icon_top" title="Top"/>
 	<img src="images/icon_bottom.png" id="icon_bottom" title="Bottom"/>
@@ -123,19 +24,101 @@
 	</div>
 </div>
 
-<div id="div_dts">
-	<label>DT filename</label>
-	<input type="text" id="dt_filename" value="at91-ariag25"/>
-	<br/>
-	<label>Device Tree preview</label>
-	<br/>
-	<textarea id="textarea_dts"></textarea>
-	<br/>
-	<!--<button onClick="compile()">Compile</button>-->
-	<br/>
-	<br/>
-	<div id="dtblink"></div>
-</div>	
+<div id="div_hwdefine">
+	<button onClick="showHwSerial()">SERIAL</button>
+	<button onClick="showHwI2c()">I2C</button>
+	<button onClick="showHwAdc()">ADC</button>
+	<button onClick="showHwOther()">More..</button>
+	<button onClick="showHwDts()">DTS</button>
+	<!--<button onClick="showSignal('PA0','TXD0')">DUMMY</button>-->
+
+	<div class="hwsections" id="hwserial">
+		<fieldset>
+		<legend>/dev/ttyS1 (USART0)</legend>
+			<input type="checkbox" id="usart0enabled" checked/>Enabled<br>
+			<input type="checkbox" id="usart0pinctrl" checked/>CTS and RTS enabled<br>
+			<input type="checkbox" id="usart0rs485atboottime" />RS485 enabled at bootime<br>
+			<input type="checkbox" id="usart0rs485rtsdelay" />RS485 delay<br>
+			<input type="number" id="usart0rs485beforedelay" min="0" max="2000" value="0"> Before (0.1ms)<br>
+			<input type="number" id="usart0rs485afterdelay" min="0" max="2000" value="0"> After (0.1ms)
+		</fieldset>
+
+		<fieldset>
+		<legend>/dev/ttyS2 (USART1)</legend>
+			<input type="checkbox" id="usart1enabled" checked/>Enabled<br>
+			<input type="checkbox" id="usart1pinctrl" checked/>CTS and RTS enabled<br>
+			<input type="checkbox" id="usart1rs485atboottime" />RS485 enabled at bootime<br>
+			<input type="checkbox" id="usart1rs485rtsdelay" />RS485 delay<br> 
+			<input type="number" id="usart1rs485beforedelay" min="0" max="2000" value="0"> Before (0.1ms)<br>
+			<input type="number" id="usart1rs485afterdelay" min="0" max="2000" value="0"> After (0.1ms)
+		</fieldset>
+
+		<fieldset>
+			<legend>/dev/ttyS3 (USART2)</legend>
+			<input type="checkbox" id="usart2enabled" checked/>Enabled<br>
+		</fieldset>
+
+		<fieldset>
+			<legend>/dev/ttyS4 (USART3)</legend>
+			<input type="checkbox" id="usart3enabled" checked/>Enabled<br>
+			<input type="checkbox" id="usart3pinctrl" checked/>CTS and RTS enabled<br>
+			<input type="checkbox" id="usart3rs485atboottime" />RS485 enabled at bootime<br>
+			<input type="checkbox" id="usart3rs485rtsdelay" />RS485 delay<br> 
+			<input type="number" id="usart3rs485beforedelay" min="0" max="2000" value="0"> Before (0.1ms)<br>
+			<input type="number" id="usart3rs485afterdelay" min="0" max="2000" value="0"> After (0.1ms)
+		</fieldset>
+
+		<fieldset>
+			<legend>/dev/ttyS5 (UART0)</legend>
+			<input type="checkbox" id="uart0enabled"/>Enabled<br>
+		</fieldset>
+
+		<fieldset>
+			<legend>/dev/ttyS6 (UART1)</legend>
+			<input type="checkbox" id="uart1enabled"/>Enabled<br>
+		</fieldset>
+	</div>
+
+	<div class="hwsections" id="hwi2c" hidden>
+		<fieldset>
+		<legend>/dev/i2c-0</legend>
+			<input type="checkbox" id="i2c0enabled" checked/>Enabled<br>
+		</fieldset>
+
+		<fieldset>
+		<legend>/dev/i2c-1</legend>
+			<input type="checkbox" id="i2c1enabled"/>Enabled<br>
+		</fieldset>
+	</div>
+
+	<div class="hwsections" id="hwadc" hidden>
+		<fieldset>
+		<legend>A/D converter @ 10 bits</legend>
+			<input type="checkbox" id="adcenabled" checked/>Enabled<br>
+		</fieldset>
+	</div>
+
+	<div class="hwsections" id="hwother" hidden>
+		<fieldset>
+		<legend>Macb0</legend>
+			<input type="checkbox" id="macb0enabled" checked/>Enabled<br>
+			MAC address: <input type="text" size="20"  id="macb0macaddress" value="00 04 25 21 43 65"/><br>
+		</fieldset>
+	</div>
+
+	<div class="hwsections" id="hwdts" hidden>
+		<input type="text" id="dt_filename" value="at91-ariag25" hidden/>
+		<textarea id="textarea_dts"></textarea>
+		<br/>
+		<!--<button onClick="compile()">Compile</button>-->
+		<br/>
+		<br/>
+		<div id="dtblink"></div>
+	</div>	
+
+
+</div>
+
 
 
 

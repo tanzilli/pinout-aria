@@ -1,11 +1,7 @@
 body  {
 	font-family: Arial, sans-serif;
 	font-size: 9pt;
-	background: url(paper.jpg) repeat-x #6F715C;
-}
-
-div.hwsections {
-	width:300px;
+	background-color: #grey;
 }
 
 span#debug {
@@ -49,11 +45,23 @@ img#icon_right {
 	top: 10px;
 	left: 606px;
 }
+
+div#div_hwdefine {
+	position: absolute;
+	top: 30px;
+	left:740px;
+}
+
+div.hwsections {
+	width: 600px;
+}
+
+
 div#div_pinout {
 	position: absolute;
 	z-index: 1;
 	top: 30px;
-	left: 320px;
+	left: 20px;
 	width: 640px;
 	font-family: Arial, sans-serif;
 	font-size: 9pt;
@@ -108,21 +116,11 @@ div#div_bottom_pins {
 	text-align: right;
 }
 
-div#div_dts {
-	position: absolute;
-	z-index: 1;
-	top: 0px;
-	left: 1000px;
-	width: 400px;
-	font-family: Arial, sans-serif;
-	font-size: 9pt;
-}
-
 textarea#textarea_dts {
 	z-index: 1;
 	top: 0px;
 	left: 0px;
-	width: 400px;
+	width: 100%;
 	height: 600px;
 	font-family: monospace;
 	font-size: 8pt;
