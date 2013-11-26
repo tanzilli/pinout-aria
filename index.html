@@ -28,8 +28,8 @@
 	<button onClick="showHwSerial()">SERIAL</button>
 	<button onClick="showHwI2c()">I2C</button>
 	<button onClick="showHwAdc()">ADC</button>
+	<button onClick="showHwSpi()">SPI</button>
 	<button onClick="showHwOther()">More..</button>
-	<button onClick="showHwDts()">DTS</button>
 	<!--<button onClick="showSignal('PA0','TXD0')">DUMMY</button>-->
 
 	<div class="hwsections" id="hwserial">
@@ -95,6 +95,13 @@
 		<fieldset>
 		<legend>A/D converter @ 10 bits</legend>
 			<input type="checkbox" id="adcenabled" checked/>Enabled<br>
+		</fieldset>
+	</div>
+
+	<div class="hwsections" id="hwspi" hidden>
+		<fieldset>
+		<legend>/dev/spiX.0</legend>
+			<input type="checkbox" id="spienabled" checked/>Enabled<br>
 		</fieldset>
 	</div>
 

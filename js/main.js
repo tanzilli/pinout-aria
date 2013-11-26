@@ -123,9 +123,9 @@ function showHwAdc() {
 	$("div#hwadc").slideDown();
 }
 
-function showHwDts() {
+function showHwSpi() {
 	$("div.hwsections").slideUp();
-	$("div#hwdts").slideDown();
+	$("div#hwspi").slideDown();
 }
 
 function showHwOther() {
