@@ -52,8 +52,15 @@ div#div_hwdefine {
 	left:740px;
 }
 
+div#div_dts {
+	position: absolute;
+	top: 30px;
+	left:1140px;
+	width: 400px;
+}
+
 div.hwsections {
-	width: 600px;
+	width: 400px;
 }
 
 
