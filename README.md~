@@ -1,24 +1,17 @@
-#Device tree simple web editor
+#Acme Board pinout viewer and Device tree generator
 
-##Installing
-
-Clone this project on your PC:
+##Install and run
 
 <pre>
-~$ git clone git://github.com/tanzilli/dtEditor.git
+~$ git clone git://github.com/tanzilli/pinout.git
+~$ cd pinout
+~$ python web.py 
 </pre>
+
+Open a brower on [http://localhost:8000](http://localhost:8000)
 
 ##Live demo
 
-* http://dteditor.tanzilli.com
+* http://www.tanzilli.com/pinout
 
-##Try it on your Linux PC
 
-Move in the dtEditor directory and run a simple web server:
-
-<pre>
-~$ cd dtEditor
-~/dtEditor$ python -m SimpleHTTPServer
-</pre>
-
-Then open your browser to **http://localhost:8000** 

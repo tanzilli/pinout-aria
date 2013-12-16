@@ -12,6 +12,6 @@ Open a brower on [http://localhost:8000](http://localhost:8000)
 
 ##Live demo
 
-* http://www.tanzilli.com/pinout
+* http://http://builder.tanzilli.com:8080
 
 
