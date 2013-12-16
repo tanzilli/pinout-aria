@@ -12,6 +12,6 @@ Open a brower on [http://localhost:8000](http://localhost:8000)
 
 ##Live demo
 
-* http://http://builder.tanzilli.com:8080
+* http://builder.tanzilli.com:8080
 
 
