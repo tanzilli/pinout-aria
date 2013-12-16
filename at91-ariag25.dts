@@ -110,6 +110,32 @@
 			uart1: serial@f8044000 {
 				status = "[uart1status]";
 			};
+			
+			spi0: spi@f0000000 {
+				status = "[spi0status]";
+				interrupts = <13 4 5>;
+				//cs-gpios = <0>, <0>, <0>, <0>;
+				cs-gpios = <&pioA 14 0>, <0>, <0>, <0>;
+				
+				device@0 {
+					compatible = "spidev";
+					spi-max-frequency = <5000000>;
+					reg = <0>;
+				};
+        
+				device@1 {
+					compatible = "spidev";
+					spi-max-frequency = <5000000>;
+					reg = <1>;
+				};
+
+				device@2 {
+					compatible = "spidev";
+					spi-max-frequency = <5000000>;
+					reg = <2>;
+				};
+			};
+
 
 			macb0: ethernet@f802c000 {
 				phy-mode = "rmii";

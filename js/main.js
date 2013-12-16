@@ -476,6 +476,20 @@ function readDTS() {
 			data=data.replace("[adcstatus]","disabled");
 		}	
 
+		//**********************
+		// SPI0 (/dev/i2c-0)
+		//**********************
+
+		if ($("#spi0enabled").is(':checked')) {
+			data=data.replace("[spi0status]","okay");
+			showSignal("PC0","SDA1");
+			showSignal("PC1","SCL1");
+		} else {
+			data=data.replace("[spi0status]","disabled");
+			showSignal("PC0","PC0");
+			showSignal("PC1","PC1");
+		}	
+
 
 		//**********************
 		// RAM size
