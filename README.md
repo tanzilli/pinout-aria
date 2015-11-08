@@ -1,10 +1,10 @@
-#Acme Board pinout viewer and Device tree generator
+#Pinout and dtb generator for Aria G25
 
 ##Install and run
 
 <pre>
-~$ git clone git://github.com/tanzilli/pinout.git
-~$ cd pinout
+~$ git clone git://github.com/tanzilli/pinout-aria.git
+~$ cd pinout-aria
 ~$ python web.py 
 </pre>
 
