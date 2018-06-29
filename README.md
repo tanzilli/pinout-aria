@@ -8,7 +8,7 @@
 ~$ python web.py 
 </pre>
 
-Open a brower on [http://localhost:8000](http://localhost:8000)
+Open a browser on [http://localhost:8080](http://localhost:8080)
 
 ##Live demo
 
